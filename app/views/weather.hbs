@@ -1,0 +1,50 @@
+<h1>Weather</h1>
+<form>
+    <label>
+        Enter the name of a city:
+        <input name="city" type="text" size="20" autofocus/>
+    </label>
+    <button>Get Weather</button>
+</form>
+
+{{#if city}}
+    <h2>
+        Requested city: {{city}}
+    </h2>
+    {{#if weathers.length}}
+        <div>
+            <h2>Response in a table:</h2>
+            <table border="1">
+                <thead>
+                <th>Location</th>
+                <th>Temperature &deg;F</th>
+                <th>Temperature &deg;C</th>
+                <th>Temperature &deg;K</th>
+                <th>Relative Humidity</th>
+                </thead>
+                {{#each weathers}}
+                    <tr>
+                        <td>{{cooked.location}}</td>
+                        <td>{{cooked.temperature.f}}</td>
+                        <td>{{cooked.temperature.c}}</td>
+                        <td>{{cooked.temperature.k}}</td>
+                        <td>{{cooked.humidity}}</td>
+                    </tr>
+                {{/each}}
+            </table>
+        </div>
+    {{else}}
+        <h3>No cities found using: {{city}}</h3>
+    {{/if}}
+    <div>
+        <h2>JSON response:</h2>
+        <pre>{{json}}</pre>
+    </div>
+{{/if}}
+{{#if error}}
+    <h2>Error some place:</h2>
+    <pre>{{error}}</pre>
+{{/if}}
+<hr/>
+Whether the weather be nice, weather the weather be not. We will weather the weather whether we like it or not.
+
