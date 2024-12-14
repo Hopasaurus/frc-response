@@ -1,0 +1,233 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "FRC Employee API",
+    "description": "A REST API with the following endpoints: \n  POST /employees: Add a new employee (accepts name, email, and position).<br/>\n  GET /employees: Retrieve the list of all employees.<br/>\n  GET /employees/{id}: Retrieve details of a single employee by ID.<br/>\n  PUT /employees/{id}: Update the details of an employee.<br/>\n  DELETE /employees/{id}: Remove an employee by ID.<br/>\n  Employee data is stored in memory.",
+    "version": "0.0.1"
+  },
+  "tags": [
+    {
+      "name": "employee",
+      "description": "FRC Employee management"
+    }
+  ],
+  "paths": {
+    "/employees": {
+      "post": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Add a new employee",
+        "description": "Add a new employee",
+        "operationId": "addEmployee",
+        "requestBody": {
+          "description": "Create a new employee",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Employee"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Find employees",
+        "description": "Returns a list of employees",
+        "operationId": "getEmployees",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name for filtering employees",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employee/{id}": {
+      "get": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Find employee by ID",
+        "description": "Returns a single employee",
+        "operationId": "getEmployeeById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of employee to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Employee ID not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Update an existing employee",
+        "description": "Update an existing employee by Id",
+        "operationId": "updateEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of employee to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existing employee",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Employee"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Employee not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Delete existing employee",
+        "description": "Delete existing employee by Id",
+        "operationId": "deleteEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of employee to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation (no content)"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Employee not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Employee": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 10
+          },
+          "name": {
+            "type": "string",
+            "example": "Tom"
+          },
+          "email": {
+            "type": "string",
+            "example": "Tom@example.com"
+          },
+          "position": {
+            "type": "string",
+            "example": "President"
+          }
+        }
+      }
+    }
+  }
+}

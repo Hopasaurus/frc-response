@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 
 const {GetWeather} = require("./weather");
 router.get('/weather', async (request, response) => {

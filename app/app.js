@@ -1,7 +1,9 @@
 
 const express = require('express');
 const { engine } = require('express-handlebars');
-const weatherRoutes = require('./part1/routes');
+
+const partOneRoutes = require('./part1/routes');
+const partTwoRoutes = require('./part2/routes');
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -28,5 +30,5 @@ app.get('/health', (request, response) => {
   response.send({status: "OK"});
 });
 
-app.use('/part1', weatherRoutes);
-
+app.use('/part1', partOneRoutes);
+app.use('/part2', partTwoRoutes);
