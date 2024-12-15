@@ -1,5 +1,9 @@
 {
   "openapi": "3.0.3",
+  "servers": [{
+    "description": "Employee Api Server",
+    "url": "/part2"
+  }],
   "info": {
     "title": "FRC Employee API",
     "description": "A REST API with the following endpoints: \n  POST /employees: Add a new employee (accepts name, email, and position).<br/>\n  GET /employees: Retrieve the list of all employees.<br/>\n  GET /employees/{id}: Retrieve details of a single employee by ID.<br/>\n  PUT /employees/{id}: Update the details of an employee.<br/>\n  DELETE /employees/{id}: Remove an employee by ID.<br/>\n  Employee data is stored in memory.",
@@ -25,7 +29,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Employee"
+                "$ref": "#/components/schemas/WriteEmployee"
               }
             }
           },
@@ -61,8 +65,7 @@
             "description": "Name for filtering employees",
             "required": false,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         ],
@@ -80,7 +83,7 @@
         }
       }
     },
-    "/employee/{id}": {
+    "/employees/{id}": {
       "get": {
         "tags": [
           "employee"
@@ -143,7 +146,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Employee"
+                "$ref": "#/components/schemas/WriteEmployee"
               }
             }
           },
@@ -172,14 +175,14 @@
         "tags": [
           "employee"
         ],
-        "summary": "Delete existing employee",
+        "summary": "Delete employee",
         "description": "Delete existing employee by Id",
         "operationId": "deleteEmployee",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID of employee to return",
+            "description": "ID of employee to delete",
             "required": true,
             "schema": {
               "type": "integer",
@@ -193,9 +196,6 @@
           },
           "400": {
             "description": "Invalid request"
-          },
-          "404": {
-            "description": "Employee not found"
           }
         }
       }
@@ -203,6 +203,26 @@
   },
   "components": {
     "schemas": {
+      "WriteEmployee": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Tom"
+          },
+          "email": {
+            "type": "string",
+            "example": "Tom@example.com"
+          },
+          "position": {
+            "type": "string",
+            "example": "President"
+          }
+        }
+      },
       "Employee": {
         "required": [
           "name"
