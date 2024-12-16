@@ -4,6 +4,7 @@ const { engine } = require('express-handlebars');
 
 const partOneRoutes = require('./part1/routes');
 const partTwoRoutes = require('./part2/routes');
+const partThreeRoutes = require('./part3/routes');
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -32,3 +33,4 @@ app.get('/health', (request, response) => {
 
 app.use('/part1', partOneRoutes);
 app.use('/part2', partTwoRoutes);
+app.use('/part3', partThreeRoutes);
