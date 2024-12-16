@@ -119,6 +119,9 @@ async function wrappedGet(path) {
   };
   return new Promise((resolve, reject) => {
     const req = https.request(requestOptions, function (res) {
+      if (res.statusCode === 401) {
+        reject(new Error(res.statusMessage + " - Check the api key."));
+      }
       let chunks = [];
       res.setEncoding('utf8');
       res.on('data', (chunk) => { chunks.push(chunk); });
