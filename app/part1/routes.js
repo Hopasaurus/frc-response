@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const {GetWeather} = require("./weather");
-router.get('/weather', async (request, response) => {
+router.get('/', async (request, response) => {
   const { city } = request.query;
 
   if (city) {
