@@ -16,3 +16,4 @@ Include error handling for invalid city names or network issues. Use an API key 
     * https://openweathermap.org/current
 * There is a little bit of validation around the city but more validation would need to be discussed with the users of the product and added as scenarios arise.
 * If the product is to be used primarily for a single country the country code could be hard coded.
+* Error handling could be more robust.
