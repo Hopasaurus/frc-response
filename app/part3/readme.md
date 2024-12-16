@@ -17,10 +17,10 @@ Summarize the charges by:
 ## Questions on this:
 
 - "Total number of transactions" there are Stripe transactions, is this the
-  thing being asked for or is transactions being used as another word for 
-  charge.
+  thing being asked for? (or is transactions being used as another word for 
+  charge.)
 - It looks like a "connected account" (stripe term) has a default_currency.
-  Should the service filter by `on_behalf_of` and then check the currency
+  Should the service be given an id for a connected acount, filter by `on_behalf_of` and then check the currency
   for each charge and then convert it to the default currency?
 
 For the initial iteration I took the simpler route of summarizing using the data available in the charge and transaction Stripe apis. This provides a good base to work from, the next step would be to discuss this with the client to see if this is the intention and as clarifying questions.
