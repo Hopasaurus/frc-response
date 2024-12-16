@@ -2,6 +2,11 @@
 
 This application contains the response for the three parts of the FRC Challenge.
 
+Each part contains a readme pertaining to that part:
+* [Part 1 Readme](./app/part1/readme.md)
+* [Part 2 Readme](./app/part2/readme.md)
+* [Part 3 Readme](./app/part3/readme.md)
+
 # Configuring environment variables:
 
 Copy the `env.sample` file to `env` and replace the placeholders with real values for the api keys for OpenWeather API and Stripe.
